@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.vinext
+.wrangler
+.openai
+.DS_Store
+*.tsbuildinfo
+# vídeos PLACEHOLDER = depoimentos do concorrente. Nunca subir.
+public/videos/PLACEHOLDER-*.mp4
