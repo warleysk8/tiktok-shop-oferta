@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import { COMPANY, companyLine } from './funnel-config';
 
 /**
@@ -29,8 +30,7 @@ export default function LegalPage({
 }) {
   return (
     <main className="legal-page">
-      {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-      <a className="legal-back" href="/">← Voltar ao site</a>
+      <Link className="legal-back" href="/">← Voltar ao site</Link>
       <h1>{title}</h1>
       <p className="legal-updated">Última atualização: {COMPANY.legalUpdatedAt}</p>
       <div className="legal-body">{children}</div>

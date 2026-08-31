@@ -13,8 +13,8 @@
 
 # next.js
 /.next/
-/.vinext/
 /out/
+/build/
 
 # misc
 .DS_Store
@@ -33,11 +33,9 @@ yarn-error.log*
 .vercel
 next-env.d.ts
 /dist/
-/.wrangler/
-/outputs/
-/work/
 *.tsbuildinfo
 /.openai/
+/.wrangler/
 
 # vídeos PLACEHOLDER são depoimentos do CONCORRENTE (benchmark).
 # Publicar = violação de direito autoral + depoimento falso. Não versionar.

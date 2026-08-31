@@ -25,11 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
-        {/* Ticto Echo — repassa os parâmetros de UTM para o checkout da Ticto. */}
+        {/* Ticto Echo: repassa os parâmetros de UTM para o checkout da Ticto. */}
         <script src="https://echo.ticto.app/ticto-echo.min.js" async />
       </body>
     </html>

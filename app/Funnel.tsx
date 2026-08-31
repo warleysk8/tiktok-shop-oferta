@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import VideoStep from './VideoStep';
 import ProofShots from './ProofShots';
 import Testimonials from './Testimonials';
@@ -475,9 +476,9 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
         <p>{LEGAL}</p>
         <p>{META_DISCLAIMER}</p>
         <p className="footer-links">
-          <a href="/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>
+          <Link href="/privacidade" target="_blank" rel="noopener">Política de Privacidade</Link>
           <span aria-hidden="true"> · </span>
-          <a href="/termos" target="_blank" rel="noopener">Termos de Uso</a>
+          <Link href="/termos" target="_blank" rel="noopener">Termos de Uso</Link>
         </p>
         <p>© {year} {COMPANY.brand}{companyLine && ` · ${companyLine}`}</p>
       </footer>
