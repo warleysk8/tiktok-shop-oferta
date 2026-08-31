@@ -97,7 +97,7 @@ export default function Testimonials({ onStart, shots, label, cta, videoFirst }:
             {TESTIMONIALS.cta} <span aria-hidden="true">→</span>
           </button>
         )}
-        <small className="cta-note">{TESTIMONIALS.ctaNote}</small>
+        {TESTIMONIALS.ctaNote && <small className="cta-note">{TESTIMONIALS.ctaNote}</small>}
       </div>
     </section>
   );

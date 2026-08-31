@@ -232,7 +232,7 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
             <button className="primary-button" onClick={startQuiz}>
               {HERO.cta} <span aria-hidden="true">→</span>
             </button>
-            <small className="cta-note">{HERO.ctaNote}</small>
+            {HERO.ctaNote && <small className="cta-note">{HERO.ctaNote}</small>}
             <div className="trust-row" aria-label="Vantagens">
               {HERO.trust.map((item) => <span key={item}>{item}</span>)}
             </div>
@@ -240,7 +240,7 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
           </div>
 
           <aside className="preview-card teaser-card" id="quiz">
-            <div className="preview-topline"><span>Sem cadastro</span><b>2 min</b></div>
+            <div className="preview-topline"><span>Comece aqui</span><b>2 min</b></div>
             <div className="progress"><span style={{ width: '14%' }} /></div>
             <p className="question-kicker">Comece pelo que está travando</p>
             <h2>{HERO.teaserTitle}</h2>
@@ -248,7 +248,6 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
               {HERO.teaserItems.map((item) => <span key={item}>{item}</span>)}
             </div>
             <button className="secondary-cta" onClick={startQuiz}>{HERO.teaserCta}</button>
-            <small>Sem cadastro. Sem e-mail.</small>
           </aside>
         </section>
       )}

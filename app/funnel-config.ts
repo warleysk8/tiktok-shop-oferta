@@ -152,9 +152,9 @@ export const questions: Question[] = [
     id: 'goal',
     kicker: 'Só falta isso',
     title: 'Pronto pra começar essa semana?',
-    subtitle: 'Sua rota já está montada. Ela aparece na próxima tela.',
+    subtitle: 'Seu plano já está montado. Ele aparece na próxima tela.',
     options: [
-      { label: 'Sim, quero começar agora', value: 'commit', echo: 'Boa. Aqui está a sua rota.' },
+      { label: 'Sim, quero começar agora', value: 'commit', echo: 'Boa. Aqui está o seu plano.' },
       { label: 'Quero ver o plano antes', value: 'preview', echo: 'Justo. Está logo aqui.' },
     ],
   },
@@ -309,9 +309,9 @@ export const PROOF_SCREEN = {
  */
 export const TESTIMONIALS = {
   title: 'Depoimentos',
-  lead: 'Conversas e vídeos de quem já está fazendo. Arraste para ver.',
-  cta: 'Ver a minha rota',
-  ctaNote: 'Grátis · sem cadastro',
+  lead: 'Conversas e vídeos de quem já começou. Arraste para ver.',
+  cta: 'Começar agora',
+  ctaNote: '',
   video: {
     /** ⚠️ Placeholder de benchmark. Troque pelo seu depoimento. */
     src: '/videos/PLACEHOLDER-depoimento-03.mp4',
@@ -330,10 +330,10 @@ export const PLAN_BRIDGE =
   'Este plano diz o que fazer em cada dia. Como fazer (qual produto escolher, o que falar, como começar o vídeo) é o que está na Operação TikTok Shop.';
 
 export const PROOF_BLOCK = {
-  title: 'Alunos reais',
+  title: 'Quem já está fazendo',
   lead: 'Conversas de WhatsApp. Toque para ampliar.',
   disclaimer:
-    'Prints reais, publicados com autorização. Resultado individual, não é promessa nem média. Nomes preservados.',
+    'Conversas com alunos, publicadas com autorização. Resultado individual, não é promessa nem média. Nomes preservados.',
 };
 
 /**

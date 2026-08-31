@@ -67,7 +67,7 @@ export type Audience = {
 
 /* Sem formulário no funil inteiro: "sem cadastro" deixou de ser promessa
    parcial e virou diferencial real. Vale dizer alto. */
-const CTA_NOTE = 'Sem cadastro. Sem e-mail.';
+const CTA_NOTE = '';
 
 export const audiences: Record<AudienceId, Audience> = {
   /* ------------------------------------------------------------- geral --- */
@@ -78,7 +78,7 @@ export const audiences: Record<AudienceId, Audience> = {
     metaDescription:
       'Sem seguidores, sem aparecer, sem experiência. Em 2 minutos, descubra como começar na TikTok Shop e dê o primeiro passo ainda este mês.',
     hero: {
-      eyebrow: 'Grátis · leva 2 minutos',
+      eyebrow: 'Leva 2 minutos',
       headline: 'Quer começar a ganhar com a TikTok Shop?',
       headlineAccent: 'Aprenda o caminho e dê seu primeiro passo ainda este mês.',
       lead: 'Você não precisa ter seguidores, aparecer ou ter experiência. Em 2 minutos, descubra como começar.',
@@ -87,8 +87,8 @@ export const audiences: Record<AudienceId, Audience> = {
       trust: ['✓ Só o celular', '✓ Sem seguidores', '✓ Sem aparecer, se quiser'],
       teaserTitle: 'Não é falta de seguidor.',
       teaserItems: ['O que está te travando hoje', 'O caminho certo pro seu tempo', 'Seu próximo passo'],
-      teaserCta: 'Ver minha rota',
-      proofLabel: 'Prints reais de alunos',
+      teaserCta: 'Começar',
+      proofLabel: 'Quem já está fazendo',
     },
     quiz: {
       mirror: {
@@ -113,9 +113,9 @@ export const audiences: Record<AudienceId, Audience> = {
     label: 'CLT',
     metaTitle: 'Seu emprego não precisa ser sua única fonte de renda',
     metaDescription:
-      'Como começar no TikTok Shop sendo CLT, com 30 minutos por dia depois do expediente. Descubra a sua rota em 2 minutos, de graça.',
+      'Como começar no TikTok Shop sendo CLT, com 30 minutos por dia depois do expediente. Descubra o passo a passo em 2 minutos.',
     hero: {
-      eyebrow: 'Grátis · leva 2 minutos',
+      eyebrow: 'Leva 2 minutos',
       /**
        * "Trabalhar com" diz o que a pessoa vai fazer; "sem largar o emprego"
        * desarma o medo nº 1 desse público. Evitei "conciliar": é palavra formal
@@ -133,7 +133,7 @@ export const audiences: Record<AudienceId, Audience> = {
       trust: ['✓ Sem largar o emprego', '✓ 30 minutos por dia', '✓ Só o celular'],
       teaserTitle: 'Não é falta de tempo.',
       teaserItems: ['O que dá pra fazer em 30 minutos', 'O caminho certo pro seu cansaço', 'Seu próximo passo'],
-      teaserCta: 'Ver o que dá pra fazer',
+      teaserCta: 'Começar',
       proofLabel: 'Alunos que também são CLT',
     },
     quiz: {
@@ -169,7 +169,7 @@ export const audiences: Record<AudienceId, Audience> = {
       goal: {
         kicker: 'Só falta isso',
         title: 'Topa começar já, no tempo que você tem?',
-        subtitle: 'Sua rota cabe depois do expediente. Ela vem agora.',
+        subtitle: 'Seu plano cabe depois do expediente. Ele vem agora.',
       },
     },
     proofOrder: ['tempo', 'celular', 'produto'],
@@ -183,9 +183,9 @@ export const audiences: Record<AudienceId, Audience> = {
     label: 'Oportunidade',
     metaTitle: 'R$ 111 milhões: o número por trás da expansão do TikTok Shop no Brasil',
     metaDescription:
-      'Você pode começar a ganhar com a TikTok Shop sem largar o emprego, sem estoque e usando só o celular. Descubra a sua rota em 2 minutos.',
+      'Você pode começar a ganhar com a TikTok Shop sem largar o emprego, sem estoque e usando só o celular. Descubra por onde entrar em 2 minutos.',
     hero: {
-      eyebrow: 'Grátis · leva 2 minutos',
+      eyebrow: 'Leva 2 minutos',
       /**
        * ⚠️ DADO FACTUAL — confira antes de cada campanha.
        * O número é R$ 111 milhões (não 118): é o capital social da TikTok
@@ -210,8 +210,8 @@ export const audiences: Record<AudienceId, Audience> = {
       note: 'R$ 111 milhões é o capital social da TikTok Logistics Brasil Ltda, transportadora do TikTok Shop, registrada em agosto de 2026.',
       teaserTitle: 'Não precisa ter chegado primeiro.',
       teaserItems: ['Se dá pra você entrar hoje', 'Qual caminho é o seu', 'Seu próximo passo'],
-      teaserCta: 'Ver minha entrada',
-      proofLabel: 'Prints reais de alunos',
+      teaserCta: 'Começar',
+      proofLabel: 'Quem já está fazendo',
     },
     quiz: {
       mirror: {
@@ -247,7 +247,7 @@ export const audiences: Record<AudienceId, Audience> = {
       goal: {
         kicker: 'Só falta isso',
         title: 'Pronto pra entrar ainda esse mês?',
-        subtitle: 'Sua rota de entrada aparece na próxima tela.',
+        subtitle: 'Seu plano de entrada aparece na próxima tela.',
       },
     },
     proofOrder: ['produto', 'parado', 'tempo'],
@@ -263,7 +263,7 @@ export const audiences: Record<AudienceId, Audience> = {
     metaDescription:
       'Aprenda a receber comissão indicando produtos. Sem estoque, sem seguidores, sem experiência: do zero, só com o celular.',
     hero: {
-      eyebrow: 'Grátis · leva 2 minutos',
+      eyebrow: 'Leva 2 minutos',
       /**
        * A virada de lado: quase todo mundo desse público já comprou algo pela
        * TikTok Shop. A headline usa essa familiaridade para mostrar que ele
@@ -284,8 +284,8 @@ export const audiences: Record<AudienceId, Audience> = {
       trust: ['✓ Sem seguidores', '✓ Sem aparecer, se quiser', '✓ Só o celular'],
       teaserTitle: 'Não é difícil. É saber a ordem.',
       teaserItems: ['O que fazer primeiro', 'O que dá pra deixar pra depois', 'Seu próximo passo'],
-      teaserCta: 'Ver o caminho',
-      proofLabel: 'Prints reais de alunos',
+      teaserCta: 'Começar',
+      proofLabel: 'Quem já está fazendo',
     },
     quiz: {
       mirror: {
@@ -311,7 +311,7 @@ export const audiences: Record<AudienceId, Audience> = {
       goal: {
         kicker: 'Só falta isso',
         title: 'Pronto pra ficar do outro lado?',
-        subtitle: 'Sua rota do zero já está montada.',
+        subtitle: 'Seu plano do zero já está montado.',
       },
     },
     proofOrder: ['curso', 'celular', 'produto'],
