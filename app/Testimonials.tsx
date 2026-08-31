@@ -15,7 +15,7 @@ type Props = {
   /** Uso no hero: botão que começa o funil. */
   onStart?: () => void;
   /** Uso na página final: link direto pro checkout no rodapé do carrossel. */
-  cta?: { label: string; href: string };
+  cta?: { label: string; href: string; onClick?: () => void };
   /** true = o vídeo abre o carrossel (prova em vídeo primeiro). */
   videoFirst?: boolean;
 };
@@ -89,7 +89,7 @@ export default function Testimonials({ onStart, shots, label, cta, videoFirst }:
 
       <div className="tm-foot">
         {cta ? (
-          <a className="primary-button" href={cta.href}>
+          <a className="primary-button" href={cta.href} onClick={cta.onClick}>
             {cta.label} <span aria-hidden="true">→</span>
           </a>
         ) : (

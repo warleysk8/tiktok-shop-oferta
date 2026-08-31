@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import MetaPixel from './MetaPixel';
 import './globals.css';
 
 const geistSans = Geist({
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <MetaPixel />
         {children}
         {/* Ticto Echo: repassa os parâmetros de UTM para o checkout da Ticto. */}
         <script src="https://echo.ticto.app/ticto-echo.min.js" async />

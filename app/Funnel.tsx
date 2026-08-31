@@ -6,6 +6,7 @@ import VideoStep from './VideoStep';
 import ProofShots from './ProofShots';
 import Testimonials from './Testimonials';
 import { getAudience, type AudienceId } from './audiences';
+import { metaTrack } from './meta';
 import {
   ANALYZING_STEPS,
   COMPANY,
@@ -111,9 +112,16 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
   const bridgeCopy = useMemo(() => audienceMessage(answers.age), [answers.age]);
   const fullPlan = useMemo(() => PLANS.find((plan) => plan.id === 'completo') ?? PLANS[0], []);
   const partialPlan = useMemo(() => PLANS.find((plan) => plan.id === 'parcial'), []);
+  const handleCheckout = () => {
+    metaTrack(
+      'InitiateCheckout',
+      { value: 19.9, currency: 'BRL', content_name: OFFER.product },
+      audience.id,
+    );
+  };
   const checkoutButton = (className: string) =>
     fullPlan.url ? (
-      <a className={`primary-button ${className}`} href={fullPlan.url}>
+      <a className={`primary-button ${className}`} href={fullPlan.url} onClick={handleCheckout}>
         {OFFER.cta} <span aria-hidden="true">→</span>
       </a>
     ) : (
@@ -193,6 +201,18 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
     };
   }, [phase]);
 
+  /* Chegou na oferta: ViewContent uma vez (Pixel + CAPI). */
+  const viewedOfferRef = useRef(false);
+  useEffect(() => {
+    if (phase !== 'result' || viewedOfferRef.current) return;
+    viewedOfferRef.current = true;
+    metaTrack(
+      'ViewContent',
+      { content_name: OFFER.product, content_category: 'oferta', value: 19.9, currency: 'BRL' },
+      audience.id,
+    );
+  }, [phase, audience.id]);
+
   useEffect(() => {
     if (phase === 'quiz' || phase === 'result') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -200,6 +220,7 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
   }, [phase, cursor]);
 
   function startQuiz() {
+    if (phase !== 'quiz') metaTrack('QuizStart', {}, audience.id);
     setPhase('quiz');
   }
 
@@ -434,7 +455,7 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
             <Testimonials
               shots={orderedProof}
               label={PROOF_BLOCK.title}
-              cta={fullPlan.url ? { label: OFFER.cta, href: fullPlan.url } : undefined}
+              cta={fullPlan.url ? { label: OFFER.cta, href: fullPlan.url, onClick: handleCheckout } : undefined}
               videoFirst
             />
             <p className="result-proof-disclaimer">{PROOF_BLOCK.disclaimer}</p>
