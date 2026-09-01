@@ -42,14 +42,14 @@ export default function Testimonials({ onStart, shots, label, cta, videoFirst }:
     track.scrollBy({ left: step * direction, behavior: 'smooth' });
   }
 
-  /* Monta o trilho: vídeo primeiro (videoFirst) ou intercalado entre os prints. */
+  /* Monta o trilho. O vídeo só entra se estiver ligado (TESTIMONIALS.video.enabled)
+     e não for placeholder — senão o carrossel é só prints. */
   const cards = shots.map((shot) => ({ kind: 'shot' as const, shot }));
+  const showVideo = TESTIMONIALS.video.enabled;
   const videoPos = videoFirst ? 0 : TESTIMONIALS.video.after;
-  const items: Array<{ kind: 'shot'; shot: ProofShot } | { kind: 'video' }> = [
-    ...cards.slice(0, videoPos),
-    { kind: 'video' },
-    ...cards.slice(videoPos),
-  ];
+  const items: Array<{ kind: 'shot'; shot: ProofShot } | { kind: 'video' }> = showVideo
+    ? [...cards.slice(0, videoPos), { kind: 'video' }, ...cards.slice(videoPos)]
+    : cards;
 
   return (
     <section className="testimonials" aria-label="Depoimentos">

@@ -53,7 +53,7 @@ function buildScreens(quizQuestions: Question[]): Screen[] {
     list.push({ kind: 'question', question, questionIndex });
     if (question.id === 'obstacle') list.push({ kind: 'proof', source: 'obstacle' });
     if (question.id === 'fear') list.push({ kind: 'proof', source: 'fear' });
-    if (question.id === 'age') list.push({ kind: 'bridge' });
+    if (question.id === 'objective') list.push({ kind: 'bridge' });
     const slot = videoSlots.find((item) => item.enabled && item.afterQuestionId === question.id);
     if (slot) list.push({ kind: 'video', slot });
   });
@@ -103,13 +103,14 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
   const [echo, setEcho] = useState<string | null>(null);
   const [analyzeStep, setAnalyzeStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [logoOk, setLogoOk] = useState(false);
 
   const screen = screens[cursor];
   const answeredCount = Object.keys(answers).length;
   /* A barra acompanha o rótulo (pergunta atual inclusa) para nunca abrir em 0%. */
   const displayStep = Math.min(quizQuestions.length, answeredCount + (screen?.kind === 'question' ? 1 : 0));
   const progress = Math.min(100, (displayStep / quizQuestions.length) * 100);
-  const bridgeCopy = useMemo(() => audienceMessage(answers.age), [answers.age]);
+  const bridgeCopy = useMemo(() => audienceMessage(answers.objective), [answers.objective]);
   const fullPlan = useMemo(() => PLANS.find((plan) => plan.id === 'completo') ?? PLANS[0], []);
   const partialPlan = useMemo(() => PLANS.find((plan) => plan.id === 'parcial'), []);
   const handleCheckout = () => {
@@ -250,6 +251,17 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
               {HERO.headlineAccent && <span className="accent-title">{HERO.headlineAccent}</span>}
             </h1>
             <p className="hero-lead">{HERO.lead}</p>
+            {/* Logo — só aparece no mobile E só quando /public/logo.png existe.
+                Sem o arquivo, o slot fica invisível (nada quebrado). */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className={`hero-logo${logoOk ? ' is-visible' : ''}`}
+              src="/logo.png"
+              alt="Operação TikTok Shop"
+              ref={(el) => { if (el && el.complete && el.naturalWidth > 0) setLogoOk(true); }}
+              onLoad={() => setLogoOk(true)}
+              onError={() => setLogoOk(false)}
+            />
             <button className="primary-button" onClick={startQuiz}>
               {HERO.cta} <span aria-hidden="true">→</span>
             </button>

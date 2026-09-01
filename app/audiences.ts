@@ -125,8 +125,8 @@ export const audiences: Record<AudienceId, Audience> = {
        *   A) 'Trabalha o dia todo?' / 'Dá pra vender na TikTok Shop à noite.'
        *   B) 'Renda extra sem largar o emprego.' / 'Descubra como começar hoje.'
        */
-      headline: 'Seu emprego não precisa ser',
-      headlineAccent: 'sua única fonte de renda.',
+      headline: 'Seu emprego',
+      headlineAccent: 'não precisa ser sua única fonte de renda.',
       lead: 'Descubra como começar no TikTok Shop sendo CLT, dedicando apenas 30 minutos por dia depois do expediente.',
       cta: 'Quero começar esse mês',
       ctaNote: CTA_NOTE,

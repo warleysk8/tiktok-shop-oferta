@@ -112,13 +112,14 @@ export const questions: Question[] = [
     ],
   },
   {
-    /* Também binária: o valor não é lido em lugar nenhum além do echo. */
+    /* O valor não é lido em lugar nenhum além do echo. */
     id: 'style',
     kicker: 'Do seu jeito',
-    title: 'Pode gravar sem mostrar o rosto?',
+    title: 'Como você prefere criar seus vídeos?',
     options: [
-      { label: 'Sim, prefiro assim', value: 'hands', echo: 'Dá certo. Dois dos três formatos não usam o rosto.' },
-      { label: 'Prefiro aparecer falando', value: 'face', echo: 'Então vai ser você na frente da câmera.' },
+      { label: 'Sem aparecer', value: 'hands', echo: 'Dá certo. Dá pra vender só com mãos, produto e narração.' },
+      { label: 'Aparecendo e falando', value: 'face', echo: 'Então vai ser você na frente da câmera.' },
+      { label: 'Ainda não sei', value: 'unknown', echo: 'Sem problema. A gente testa os formatos.' },
     ],
   },
   {
@@ -133,14 +134,15 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 'age',
+    /* Substituiu "idade" (não mudava o plano). Alimenta a ponte motivacional
+       antes da última pergunta. O valor não entra no cálculo do resultado. */
+    id: 'objective',
     kicker: 'Quase lá',
-    title: 'Sua idade?',
+    title: 'Qual é seu objetivo agora?',
     options: [
-      { label: '18 a 24', value: '18-24' },
-      { label: '25 a 39', value: '25-39' },
-      { label: '40 a 59', value: '40-59' },
-      { label: '60 ou mais', value: '60+' },
+      { label: 'Fazer a primeira comissão', value: 'first' },
+      { label: 'Criar uma renda extra', value: 'extra' },
+      { label: 'Transformar isso em algo constante', value: 'constant' },
     ],
   },
   {
@@ -198,7 +200,9 @@ export const videoSlots: VideoSlot[] = [
     unlockAfter: 12,
   },
   {
-    enabled: true, // o único que fica: 43s, mata a maior objeção do funil
+    // DESLIGADO até ter vídeo próprio. Os PLACEHOLDER são do concorrente e
+    // estão no .gitignore (não sobem). Grave o seu, coloque em CDN e ligue.
+    enabled: false,
     afterQuestionId: 'style',
     src: '/videos/PLACEHOLDER-depoimento-02.mp4',
     tag: 'A dúvida de todo mundo',
@@ -208,8 +212,8 @@ export const videoSlots: VideoSlot[] = [
     unlockAfter: 10,
   },
   {
-    enabled: false, // a ponte de idade já ocupa esse ponto do fluxo
-    afterQuestionId: 'age',
+    enabled: false, // a ponte já ocupa esse ponto do fluxo
+    afterQuestionId: 'objective',
     src: '/videos/PLACEHOLDER-depoimento-03.mp4',
     tag: 'Antes da última pergunta',
     title: '7 dias seguindo o plano.',
@@ -309,11 +313,13 @@ export const PROOF_SCREEN = {
  */
 export const TESTIMONIALS = {
   title: 'Depoimentos',
-  lead: 'Conversas e vídeos de quem já começou. Arraste para ver.',
+  lead: 'Conversas de quem já começou. Arraste para ver.',
   cta: 'Começar agora',
   ctaNote: '',
   video: {
-    /** ⚠️ Placeholder de benchmark. Troque pelo seu depoimento. */
+    /** DESLIGADO até ter vídeo próprio (o PLACEHOLDER é do concorrente e não
+     *  sobe no deploy). Ligue quando trocar o `src` por uma URL de CDN. */
+    enabled: false,
     src: '/videos/PLACEHOLDER-depoimento-03.mp4',
     caption: '7 dias seguindo o plano. O antes e o depois.',
     /** Posição no carrossel: entra depois deste número de prints. */
@@ -350,34 +356,34 @@ export const RESULT_VIDEO = {
   body: 'Mesmo ponto de partida que o seu.',
 };
 
-/* ------------------------------------------------------- ponte por idade --- */
+/* --------------------------------------------------- ponte por objetivo --- */
 
-export function audienceMessage(age?: string) {
-  if (age === '18-24') {
+export function audienceMessage(objective?: string) {
+  if (objective === 'first') {
     return {
-      tag: 'Sua vantagem',
-      title: 'Você tem tempo de sobra.',
-      body: 'E já entende como o aplicativo funciona. Falta usar isso pra vender produto e receber comissão.',
+      tag: 'Foco',
+      title: 'A primeira comissão muda o jogo.',
+      body: 'Depois dela é repetição: você já sabe que funciona pra você. O plano te leva até lá.',
     };
   }
-  if (age === '25-39') {
+  if (objective === 'extra') {
     return {
-      tag: 'Sua vantagem',
-      title: 'Você não pode perder tempo.',
-      body: 'Por isso seu plano é curto e prático: nada de curso de 40 horas antes do primeiro vídeo.',
+      tag: 'Foco',
+      title: 'Renda extra, não segundo emprego.',
+      body: '30 minutos por dia, no seu ritmo. O plano é montado pra caber nisso.',
     };
   }
-  if (age === '40-59') {
+  if (objective === 'constant') {
     return {
-      tag: 'Sua vantagem',
-      title: 'Você tem experiência de vida.',
-      body: 'Quem sabe explicar bem prende a atenção logo no começo. A parte técnica se aprende numa tarde.',
+      tag: 'Foco',
+      title: 'Constância é o que muda tudo.',
+      body: 'Seu plano é feito pra virar hábito, não pra durar uma semana e parar.',
     };
   }
   return {
-    tag: 'Sua vantagem',
-    title: 'A câmera não pergunta sua idade.',
-    body: 'Você não precisa acompanhar toda moda. Precisa de um passo por vez, na ordem certa.',
+    tag: 'Foco',
+    title: 'Um passo por vez, na ordem certa.',
+    body: 'É exatamente isso que o plano entrega.',
   };
 }
 
