@@ -14,6 +14,8 @@ type Incoming = {
   params?: Record<string, unknown>;
   eventId?: string;
   url?: string;
+  /** Opcional: força o evento pra Events Manager → Test Events. */
+  testCode?: string;
 };
 
 export async function POST(req: NextRequest) {
@@ -39,9 +41,10 @@ export async function POST(req: NextRequest) {
   const fbp = req.cookies.get('_fbp')?.value;
   const fbc = req.cookies.get('_fbc')?.value;
 
-  // Opcional: setar META_TEST_EVENT_CODE no Vercel enquanto valida em
-  // Events Manager → Test Events. Remover depois pra contar como tráfego real.
-  const testCode = process.env.META_TEST_EVENT_CODE;
+  // Test Events: aceita o código pelo corpo da requisição (útil pra testar
+  // com curl) OU pela env var META_TEST_EVENT_CODE (tagueia TODO o tráfego
+  // enquanto estiver setada — lembrar de remover depois).
+  const testCode = body.testCode || process.env.META_TEST_EVENT_CODE;
 
   const payload = {
     ...(testCode ? { test_event_code: testCode } : {}),
