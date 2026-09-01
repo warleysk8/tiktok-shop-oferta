@@ -78,7 +78,7 @@ export const audiences: Record<AudienceId, Audience> = {
     metaDescription:
       'Sem seguidores, sem aparecer, sem experiência. Em 2 minutos, descubra como começar na TikTok Shop e dê o primeiro passo ainda este mês.',
     hero: {
-      eyebrow: 'Leva 2 minutos',
+      eyebrow: '',
       headline: 'Quer começar a ganhar com a TikTok Shop?',
       headlineAccent: 'Aprenda o caminho e dê seu primeiro passo ainda este mês.',
       lead: 'Você não precisa ter seguidores, aparecer ou ter experiência. Em 2 minutos, descubra como começar.',
@@ -115,7 +115,7 @@ export const audiences: Record<AudienceId, Audience> = {
     metaDescription:
       'Como começar no TikTok Shop sendo CLT, com 30 minutos por dia depois do expediente. Descubra o passo a passo em 2 minutos.',
     hero: {
-      eyebrow: 'Leva 2 minutos',
+      eyebrow: '',
       /**
        * "Trabalhar com" diz o que a pessoa vai fazer; "sem largar o emprego"
        * desarma o medo nº 1 desse público. Evitei "conciliar": é palavra formal
@@ -185,7 +185,7 @@ export const audiences: Record<AudienceId, Audience> = {
     metaDescription:
       'Você pode começar a ganhar com a TikTok Shop sem largar o emprego, sem estoque e usando só o celular. Descubra por onde entrar em 2 minutos.',
     hero: {
-      eyebrow: 'Leva 2 minutos',
+      eyebrow: '',
       /**
        * ⚠️ DADO FACTUAL — confira antes de cada campanha.
        * O número é R$ 111 milhões (não 118): é o capital social da TikTok
@@ -263,7 +263,7 @@ export const audiences: Record<AudienceId, Audience> = {
     metaDescription:
       'Aprenda a receber comissão indicando produtos. Sem estoque, sem seguidores, sem experiência: do zero, só com o celular.',
     hero: {
-      eyebrow: 'Leva 2 minutos',
+      eyebrow: '',
       /**
        * A virada de lado: quase todo mundo desse público já comprou algo pela
        * TikTok Shop. A headline usa essa familiaridade para mostrar que ele

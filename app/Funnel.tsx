@@ -245,7 +245,7 @@ export default function Funnel({ audienceId = 'geral' }: { audienceId?: Audience
       {phase === 'hero' && (
         <section className="hero" id="inicio">
           <div className="hero-copy">
-            <span className="eyebrow"><i /> {HERO.eyebrow}</span>
+            {HERO.eyebrow && <span className="eyebrow"><i /> {HERO.eyebrow}</span>}
             <h1>
               {HERO.headline}
               {HERO.headlineAccent && <span className="accent-title">{HERO.headlineAccent}</span>}
