@@ -3,7 +3,7 @@
  * O Pixel ID NÃO é segredo (vai no HTML do cliente).
  * O token da CAPI é segredo e vive só em process.env.META_CAPI_TOKEN (Vercel).
  */
-export const META_PIXEL_ID = '1112975824634059';
+export const META_PIXEL_ID = '2562997244202503';
 
 /** Versão da Graph API usada pela CAPI. */
 export const META_GRAPH_VERSION = 'v21.0';
