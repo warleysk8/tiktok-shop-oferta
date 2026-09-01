@@ -188,11 +188,23 @@ export type VideoSlot = {
  * benchmark. Estão aqui como placeholder de estrutura. Grave os seus e
  * troque o campo `src` antes de publicar.
  */
+/**
+ * Vídeos hospedados no Panda Video (embed = iframe). A ordem abaixo é um
+ * chute — CONFIRMAR com o cliente qual vídeo casa com cada momento do quiz
+ * e ajustar `tag`/`title`/`body` + a ordem.
+ */
+const PANDA = {
+  a: 'https://player-vz-95491d47-bcc.tv.pandavideo.com.br/embed/?v=bc0d5552-6d83-4e7d-af57-8864200e6d49',
+  b: 'https://player-vz-95491d47-bcc.tv.pandavideo.com.br/embed/?v=4ff6ce55-ceb3-4843-a677-565b9c9a81ef',
+  c: 'https://player-vz-95491d47-bcc.tv.pandavideo.com.br/embed/?v=ea33d3f9-1eac-4065-bc82-0ace275962d1',
+  d: 'https://player-vz-95491d47-bcc.tv.pandavideo.com.br/embed/?v=c2897e73-59fa-4bc3-a0ed-8f08c1c36338',
+};
+
 export const videoSlots: VideoSlot[] = [
   {
-    enabled: false, // substituído por print (mesma prova, 5s em vez de 1min38)
+    enabled: true,
     afterQuestionId: 'obstacle',
-    src: '/videos/PLACEHOLDER-depoimento-01.mp4',
+    src: PANDA.a,
     tag: 'Pausa de 1 minuto',
     title: 'Ele começou igual a você.',
     body: 'Veja o que mudou primeiro.',
@@ -200,24 +212,22 @@ export const videoSlots: VideoSlot[] = [
     unlockAfter: 12,
   },
   {
-    // DESLIGADO até ter vídeo próprio. Os PLACEHOLDER são do concorrente e
-    // estão no .gitignore (não sobem). Grave o seu, coloque em CDN e ligue.
-    enabled: false,
+    enabled: true,
     afterQuestionId: 'style',
-    src: '/videos/PLACEHOLDER-depoimento-02.mp4',
+    src: PANDA.b,
     tag: 'A dúvida de todo mundo',
     title: 'Dá pra vender sem aparecer?',
-    body: 'A resposta em 43 segundos.',
+    body: 'A resposta em menos de 1 minuto.',
     cta: 'Continuar',
     unlockAfter: 10,
   },
   {
-    enabled: false, // a ponte já ocupa esse ponto do fluxo
+    enabled: true,
     afterQuestionId: 'objective',
-    src: '/videos/PLACEHOLDER-depoimento-03.mp4',
+    src: PANDA.c,
     tag: 'Antes da última pergunta',
-    title: '7 dias seguindo o plano.',
-    body: 'O antes e o depois.',
+    title: 'O antes e o depois.',
+    body: 'Poucos dias seguindo o plano.',
     cta: 'Continuar',
     unlockAfter: 10,
   },
@@ -317,11 +327,9 @@ export const TESTIMONIALS = {
   cta: 'Começar agora',
   ctaNote: '',
   video: {
-    /** DESLIGADO até ter vídeo próprio (o PLACEHOLDER é do concorrente e não
-     *  sobe no deploy). Ligue quando trocar o `src` por uma URL de CDN. */
-    enabled: false,
-    src: '/videos/PLACEHOLDER-depoimento-03.mp4',
-    caption: '7 dias seguindo o plano. O antes e o depois.',
+    enabled: true,
+    src: PANDA.d,
+    caption: 'Depoimento de aluno.',
     /** Posição no carrossel: entra depois deste número de prints. */
     after: 2,
   },

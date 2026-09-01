@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   src: string;
@@ -13,11 +13,14 @@ type Props = {
   variant?: 'interstitial' | 'inline';
 };
 
+const isEmbed = (src: string) => /^https?:\/\//.test(src) && !/\.mp4($|\?)/i.test(src);
+
 /**
- * Player de depoimento usado tanto nos intersticiais do quiz quanto na
- * página de resultado. O botão de avanço só ganha destaque depois de
- * `unlockAfter` segundos assistidos — mas o link de pular fica sempre
- * disponível, porque prender o usuário na tela derruba a conclusão.
+ * Player de depoimento (intersticiais do quiz e inline no resultado).
+ * Panda Video entra como iframe; arquivo .mp4 ainda funciona no <video>.
+ * Como o iframe não reporta tempo assistido, o botão de avançar só é
+ * destacado depois de `unlockAfter` segundos na tela — e o "pular" fica
+ * sempre disponível (prender o usuário derruba a conclusão).
  */
 export default function VideoStep({
   src,
@@ -33,6 +36,14 @@ export default function VideoStep({
   const [playing, setPlaying] = useState(false);
   const [watched, setWatched] = useState(0);
   const [muted, setMuted] = useState(false);
+  const embed = isEmbed(src);
+
+  /* iframe: libera o botão por tempo de tela. */
+  useEffect(() => {
+    if (!embed || !onContinue) return;
+    const t = window.setTimeout(() => setWatched(unlockAfter), unlockAfter * 1000);
+    return () => window.clearTimeout(t);
+  }, [embed, onContinue, unlockAfter]);
 
   const unlocked = watched >= unlockAfter;
 
@@ -41,7 +52,6 @@ export default function VideoStep({
     if (!video) return;
     if (video.paused) {
       video.play().catch(() => {
-        // autoplay com som bloqueado pelo navegador: tenta de novo sem som
         video.muted = true;
         setMuted(true);
         video.play().catch(() => undefined);
@@ -59,39 +69,51 @@ export default function VideoStep({
         <p className="video-body">{body}</p>
       </div>
 
-      <div className={`video-frame ${playing ? 'is-playing' : ''}`}>
-        <video
-          ref={videoRef}
-          src={src}
-          playsInline
-          preload="metadata"
-          controls={playing}
-          onPlay={() => setPlaying(true)}
-          onPause={() => setPlaying(false)}
-          onTimeUpdate={(event) => setWatched(event.currentTarget.currentTime)}
-          onEnded={() => setWatched(unlockAfter)}
-        />
-        {!playing && (
-          <button type="button" className="video-play" onClick={togglePlay} aria-label="Reproduzir depoimento">
-            <span className="video-play-icon" aria-hidden="true">▶</span>
-            <span className="video-play-label">Assistir agora</span>
-          </button>
-        )}
-        {muted && playing && (
-          <button
-            type="button"
-            className="video-unmute"
-            onClick={() => {
-              const video = videoRef.current;
-              if (!video) return;
-              video.muted = false;
-              setMuted(false);
-            }}
-          >
-            🔇 Tocar com som
-          </button>
-        )}
-      </div>
+      {embed ? (
+        <div className="video-frame video-frame-embed">
+          <iframe
+            src={src}
+            title={title}
+            loading="lazy"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+          />
+        </div>
+      ) : (
+        <div className={`video-frame ${playing ? 'is-playing' : ''}`}>
+          <video
+            ref={videoRef}
+            src={src}
+            playsInline
+            preload="metadata"
+            controls={playing}
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            onTimeUpdate={(event) => setWatched(event.currentTarget.currentTime)}
+            onEnded={() => setWatched(unlockAfter)}
+          />
+          {!playing && (
+            <button type="button" className="video-play" onClick={togglePlay} aria-label="Reproduzir depoimento">
+              <span className="video-play-icon" aria-hidden="true">▶</span>
+              <span className="video-play-label">Assistir agora</span>
+            </button>
+          )}
+          {muted && playing && (
+            <button
+              type="button"
+              className="video-unmute"
+              onClick={() => {
+                const video = videoRef.current;
+                if (!video) return;
+                video.muted = false;
+                setMuted(false);
+              }}
+            >
+              🔇 Tocar com som
+            </button>
+          )}
+        </div>
+      )}
 
       <p className="video-disclaimer">
         Depoimento individual. Resultados variam conforme execução, nicho e mercado.

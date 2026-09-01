@@ -69,13 +69,17 @@ export default function Testimonials({ onStart, shots, label, cta, videoFirst }:
         {items.map((item) =>
           item.kind === 'video' ? (
             <div className="tm-card tm-card-video" key="video">
-              {/* #t=0.5 faz o navegador exibir um quadro real em vez de tela preta. */}
-              <video
-                src={`${TESTIMONIALS.video.src}#t=0.5`}
-                controls
-                playsInline
-                preload="metadata"
-              />
+              {/^https?:\/\//.test(TESTIMONIALS.video.src) && !/\.mp4($|\?)/i.test(TESTIMONIALS.video.src) ? (
+                <iframe
+                  src={TESTIMONIALS.video.src}
+                  title={TESTIMONIALS.video.caption}
+                  loading="lazy"
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+                  allowFullScreen
+                />
+              ) : (
+                <video src={`${TESTIMONIALS.video.src}#t=0.5`} controls playsInline preload="metadata" />
+              )}
               <p className="tm-caption">{TESTIMONIALS.video.caption}</p>
             </div>
           ) : (
